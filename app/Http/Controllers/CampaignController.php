@@ -149,6 +149,7 @@ class CampaignController extends Controller
                 }
             }
             DB::commit();
+            cache()->flush();
             return redirect('campaigns')->with('success', 'campaign update successful');
         } catch (Exception $e) {
             DB::rollBack();
@@ -179,6 +180,7 @@ class CampaignController extends Controller
             }
             Campaign::where('id', $id)->delete();
             DB::commit();
+            cache()->flush();
             return redirect()->back()->with('success', 'campaign delete successful');
         }catch(\Exception $e){
             DB::rollBack();

@@ -1,64 +1,65 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## About CampaignManagement
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A Laravel Project for managing advertising campaigns. 
 
-## About Laravel
+## Used Technologies
+- Laradock
+- Laravel Version 8.75
+- MySQL
+- React
+- Bootstrap
+- Laravel Caching
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Installation Process
+- git clone https://github.com/laradock/laradock.git
+- git clone https://github.com/monicse09ku/CampaignManagement.git
+- In the laradock `.env` file add `DB_HOST=mysql` at the top and set `APP_CODE_PATH_HOST=../CampaignManagement/`
+- `docker-compose up -d nginx mysql phpmyadmin`
+- `winpty docker-compose exec workspace bash`
+- `cd CampaignManagement`
+- `chown -R www-data:www-data storage/ public/ bootstrap/`
+- `chmod -R 777 public/ storage/ bootstrap/`
+- In the CampaignManagement `.env` file change database connection with following
+````
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=default
+DB_USERNAME=default
+DB_PASSWORD=secret 
+````
+- `docker-compose up -d nginx mysql phpmyadmin`
+- `winpty docker-compose exec workspace bash`
+- `composer install`
+- `php artisan key generate`
+- `php artisan migrate`
+- `php artisan db:seed`
+- `composer require laravel/passport`
+- `php artisan migrate`
+- `php artisan passport:install`
+- `php artisan serve` or virtual host in the browser
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Functionalities
+- Login
+- Registration
+- Campaigns Listing with Campaign Images View inside a Bootstrap Carousel
+- Campaign Create
+- Campaign Edit
+- Campaign Delete
+- React Component of Campaigns List with Images View inside a Carousel Component
+- Api Authentication
+- Campaigns List Api
+- Single Campaign Api
+- Campaign Create Api
+- Unit Testing of Campaigns and User
+- Feature Testing of Campaigns and User
+- Laravel Caching
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Checking
+- To Authenticate, Register as a new user or login using the credentials in the UserSeeder
+- The React Modules are loaded in the home and will be visible upon login, click on the image preview button to see the image viewer React Component
+- To check CRUD functionality, click on Campaigns in the top navigation, Campaigns list with caching of 60 seconds will load
+- Click on `Add New` to add new campaign
+- In the actions, there are three buttons, Image Preview Button, Edit Button and Delete Button
+- To check Unit Tests, run `php artisan test` in the terminal
+- To check the api, find the postman collection in the root directory, import in postman, set environment variable `{{url}}` and run `Login` inside `Auth` folder, copy the `token` and set environment variable `{{token}}`, check the api inside `Campaigns` folder 
